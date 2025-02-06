@@ -4,7 +4,7 @@ import ResumeForm from "./components/ResumeForm";
 import ResumePreview from "./components/ResumePreview";
 
 function App() {
-  const [resumeData] = useState({
+  const [resumeData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
@@ -13,8 +13,13 @@ function App() {
     education: "",
   });
 
-  handleChange
-
+  const handleChange = (e) => {
+    setFormData({
+      ...resumeData,
+      [e.target.name]: e.target.value,
+    });
+  };
+  
   return (
     <div className="flex gap-4 p-4">
       <ResumeForm resumeData={resumeData} handleChange={handleChange} />
@@ -22,10 +27,5 @@ function App() {
     </div>
   );
 }
-
-function handleChange(e, setResumeData, resumeData){
-    console.log("Input Changed:", e.target.name, e.target.value);
-  setResumeData({ ...resumeData, [e.target.name]: e.target.value });
-};
 
 export default App
